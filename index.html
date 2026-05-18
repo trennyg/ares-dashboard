@@ -466,7 +466,7 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
         <div class="pi-ai-hdr">
           <div class="pi-ai-hdr-l">
             <div class="pi-ai-hdr-ttl">AI Portfolio Intelligence</div>
-            <div class="pi-powered">claude-sonnet-4-20250514</div>
+            <div class="pi-powered">gpt-4o</div>
           </div>
           <button class="pi-regen-btn" id="pi-regen" onclick="runPiAnalysis()">
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5"/><path d="M9 1l3 2-2 3"/></svg>
@@ -760,20 +760,7 @@ function initPiCharts(){
   });
 }
 
-// ── Claude API call (proxied via Vercel serverless function) ─────────────────
-async function callClaude(userPrompt, maxTokens=1200){
-  const resp = await fetch("/api/claude",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({userPrompt, maxTokens})
-  });
-  if(!resp.ok){
-    const err=await resp.json().catch(()=>({error:`HTTP ${resp.status}`}));
-    throw new Error(err.error||`HTTP ${resp.status}`);
-  }
-  const data=await resp.json();
-  return data.result||"";
-}
+const PI_SYS = "You are a senior portfolio analyst at Ares Wealth Management Solutions. Respond ONLY with valid JSON matching the requested schema — no markdown fences, no explanation, no text outside the JSON object.";
 
 // ── PI Analysis orchestration ─────────────────────────────────────────────────
 function startPiAnalysis(){
@@ -835,7 +822,7 @@ MARKET CONTEXT (2026-05-19):
 Return ONLY the JSON object.`;
 
   try{
-    const raw=await callClaude(prompt,1200);
+    const raw=await callGPT(PI_SYS,prompt,1200);
     let json;
     try{
       // strip any accidental markdown fences
