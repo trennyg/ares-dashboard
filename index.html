@@ -1,5 +1,6 @@
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);background:transparent}
 :root{
@@ -12,10 +13,11 @@ body{font-family:var(--font-sans);background:transparent}
   --p-bg:rgba(245,158,11,.1);--p-t:#fbbf24;
   --f-bg:rgba(239,68,68,.1);--f-t:#f87171;
   --o-bg:rgba(249,115,22,.1);--o-t:#fb923c;
+  --font-sans:'DM Sans',system-ui,sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --br-lg:12px;--br-md:8px;
 }
-.wrap{border-radius:var(--border-radius-lg);overflow:hidden;border:1px solid var(--bdr);background:var(--bg0)}
-
-
+.wrap{border-radius:var(--br-lg);overflow:hidden;border:1px solid var(--bdr);background:var(--bg0)}
 
 /* ── HEADER ── */
 .hdr{background:#000;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr)}
@@ -27,6 +29,13 @@ body{font-family:var(--font-sans);background:transparent}
 .live-lbl{font-size:9px;color:#4ade80;letter-spacing:.12em}
 .clk{font-size:12px;font-family:var(--font-mono);color:var(--t2)}
 
+/* ── NAV BAR ── */
+.nav-bar{background:#000;border-bottom:1px solid var(--bdr);padding:0 20px;display:flex;align-items:center;gap:2px}
+.nav-btn{background:none;border:none;border-bottom:2px solid transparent;padding:9px 16px;font-size:11px;font-family:var(--font-sans);font-weight:500;color:var(--t3);cursor:pointer;letter-spacing:.04em;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:6px}
+.nav-btn:hover{color:var(--t2)}
+.nav-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-btn svg{width:13px;height:13px;flex-shrink:0}
+
 /* ── TICKER ── */
 .tkr-bar{background:#050507;padding:5px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bdr);overflow:hidden}
 .tkr-lbl{font-size:8px;color:var(--t3);letter-spacing:.12em;white-space:nowrap;flex-shrink:0}
@@ -36,21 +45,21 @@ body{font-family:var(--font-sans);background:transparent}
 .ti{font-size:10px;color:var(--t2);display:flex;gap:4px;flex-shrink:0}
 .ti strong{color:var(--t1)}.tup{color:#4ade80}.tdn{color:#f87171}
 
-/* ── BODY ── */
+/* ── DASHBOARD BODY ── */
 .body{padding:13px 15px}
 .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:13px}
-.kpi{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center;cursor:pointer;transition:border-color .15s}
+.kpi{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--br-md);padding:10px 12px;text-align:center;cursor:pointer;transition:border-color .15s}
 .kpi:hover{border-color:var(--bdr2)}.kpi.act{border-color:var(--blue2)}
 .kpi-l{font-size:9px;color:var(--t3);margin-bottom:3px;letter-spacing:.07em;text-transform:uppercase}
 .kpi-v{font-size:22px;font-weight:500}
 .cvt{color:#3b82f6}.cvs{color:#22c55e}.cvp{color:#f59e0b}.cvf{color:#ef4444}.cvo{color:#f97316}
 .main{display:grid;grid-template-columns:1fr 205px;gap:11px}
 .ctrl{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-.ctrl input{flex:1;min-width:120px;font-size:11px;padding:5px 9px;border-radius:var(--border-radius-md);background:var(--bg2);border:1px solid var(--bdr);color:var(--t1);outline:none}
+.ctrl input{flex:1;min-width:120px;font-size:11px;padding:5px 9px;border-radius:var(--br-md);background:var(--bg2);border:1px solid var(--bdr);color:var(--t1);outline:none}
 .ctrl input:focus{border-color:var(--blue2)}
-.fb{font-size:10px;padding:4px 9px;border-radius:var(--border-radius-md);border:1px solid var(--bdr);background:transparent;color:var(--t2);cursor:pointer;font-family:var(--font-sans);transition:all .15s}
+.fb{font-size:10px;padding:4px 9px;border-radius:var(--br-md);border:1px solid var(--bdr);background:transparent;color:var(--t2);cursor:pointer;font-family:var(--font-sans);transition:all .15s}
 .fb:hover{background:var(--bg2);color:var(--t1)}.fb.act{background:var(--blue2);border-color:var(--blue2);color:#fff}
-.tbl{overflow-x:auto;border-radius:var(--border-radius-md);border:1px solid var(--bdr)}
+.tbl{overflow-x:auto;border-radius:var(--br-md);border:1px solid var(--bdr)}
 table{width:100%;border-collapse:collapse;font-size:11px}
 thead tr{background:var(--bg2);border-bottom:1px solid var(--bdr)}
 th{padding:7px 8px;text-align:left;color:var(--t3);font-weight:500;font-size:10px;letter-spacing:.06em;white-space:nowrap}
@@ -61,13 +70,13 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:500}
 .te{background:rgba(99,102,241,.15);color:#a5b4fc}.tf{background:rgba(14,165,233,.15);color:#7dd3fc}
 .tx{background:rgba(139,92,246,.15);color:#c4b5fd}.tp{background:rgba(236,72,153,.15);color:#f9a8d4}
-.ti2{background:rgba(20,184,166,.15);color:#5eead4}
+.ti2{background:rgba(20,184,166,.15);color:#5eead4}.ta{background:rgba(245,158,11,.15);color:#fde047}
 .st{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:500}
 .ss{background:var(--s-bg);color:var(--s-t)}.sp{background:var(--p-bg);color:var(--p-t)}
 .sf{background:var(--f-bg);color:var(--f-t)}.so{background:var(--o-bg);color:var(--o-t)}
 .buy{color:#22c55e;font-weight:500}.sell{color:#ef4444;font-weight:500}
 .tid{color:#3b82f6;font-family:var(--font-mono);font-size:10px;font-weight:500}
-.det{display:none;margin-top:9px;background:var(--bg2);border-radius:var(--border-radius-md);border:1px solid var(--bdr);padding:12px}
+.det{display:none;margin-top:9px;background:var(--bg2);border-radius:var(--br-md);border:1px solid var(--bdr);padding:12px}
 .det.open{display:block}
 .det-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px}
 .det-name{font-size:13px;font-weight:500;color:var(--t1)}.det-meta{font-size:10px;color:var(--t3);margin-top:2px}
@@ -77,12 +86,10 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .dfl{font-size:9px;color:var(--t3);letter-spacing:.06em;margin-bottom:2px;text-transform:uppercase}
 .dfv{font-size:11px;font-weight:500}
 .abox{margin-top:8px;background:var(--f-bg);border:1px solid rgba(239,68,68,.2);border-radius:6px;padding:7px 10px;font-size:10px;color:var(--f-t)}
-
-/* ── AI BUTTONS + OUTPUT ── */
-.ai-btn{margin-top:9px;width:100%;padding:8px;background:linear-gradient(135deg,#0d4a1a,#16a34a);color:#d1fae5;border:1px solid #22c55e;border-radius:var(--border-radius-md);font-size:11px;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;font-weight:500}
+.ai-btn{margin-top:9px;width:100%;padding:8px;background:linear-gradient(135deg,#0d4a1a,#16a34a);color:#d1fae5;border:1px solid #22c55e;border-radius:var(--br-md);font-size:11px;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;font-weight:500}
 .ai-btn:hover{background:linear-gradient(135deg,#14532d,#22c55e);color:#fff}
 .ai-btn:disabled{background:var(--bg2);color:var(--t3);border-color:var(--bdr);cursor:not-allowed}
-.ai-out{display:none;margin-top:9px;background:linear-gradient(135deg,rgba(5,46,22,.25),rgba(22,163,74,.08));border-radius:var(--border-radius-md);border:1px solid rgba(34,197,94,.2);padding:12px}
+.ai-out{display:none;margin-top:9px;background:linear-gradient(135deg,rgba(5,46,22,.25),rgba(22,163,74,.08));border-radius:var(--br-md);border:1px solid rgba(34,197,94,.2);padding:12px}
 .ai-out.show{display:block}
 .ai-lbl{font-size:9px;font-weight:500;color:#4ade80;letter-spacing:.1em;margin-bottom:6px;text-transform:uppercase;display:flex;align-items:center;gap:5px}
 .ai-lbl::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block}
@@ -92,14 +99,13 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .ai-typing span:nth-child(2){animation-delay:.15s}
 .ai-typing span:nth-child(3){animation-delay:.3s}
 @keyframes typing{0%,80%,100%{transform:scale(1);opacity:.4}40%{transform:scale(1.3);opacity:1}}
-
 .charts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}
-.cc{background:var(--bg2);border-radius:var(--border-radius-md);border:1px solid var(--bdr);padding:11px}
+.cc{background:var(--bg2);border-radius:var(--br-md);border:1px solid var(--bdr);padding:11px}
 .cct{font-size:10px;font-weight:500;color:var(--t2);margin-bottom:7px}
 .leg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;font-size:10px;color:var(--t2)}
 .ld{width:8px;height:8px;border-radius:2px;margin-right:2px;flex-shrink:0}
 .rp{display:flex;flex-direction:column;gap:8px}
-.pc{background:var(--bg2);border-radius:var(--border-radius-md);border:1px solid var(--bdr);padding:10px}
+.pc{background:var(--bg2);border-radius:var(--br-md);border:1px solid var(--bdr);padding:10px}
 .pct{font-size:9px;font-weight:500;letter-spacing:.09em;color:var(--t3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:4px}
 .cr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--bdr)}
 .cr:last-child{border-bottom:none}
@@ -118,9 +124,7 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .qr{display:flex;gap:6px;margin-bottom:4px}
 .qt{font-size:9px;color:#3b82f6;font-weight:500;font-family:var(--font-mono);min-width:34px}
 .qd{font-size:9px;color:var(--t3);line-height:1.4}
-
-/* ── NEWS ── */
-.news{margin-top:11px;background:var(--bg2);border-radius:var(--border-radius-md);border:1px solid var(--bdr);padding:11px}
+.news{margin-top:11px;background:var(--bg2);border-radius:var(--br-md);border:1px solid var(--bdr);padding:11px}
 .news-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
 .news-ttl{font-size:10px;font-weight:500;letter-spacing:.09em;color:var(--t3);text-transform:uppercase}
 .naibtn{font-size:10px;padding:6px 14px;background:linear-gradient(135deg,#0d4a1a,#16a34a);color:#d1fae5;border:1px solid #22c55e;border-radius:5px;cursor:pointer;font-family:var(--font-sans);transition:all .2s;display:flex;align-items:center;gap:5px;font-weight:500}
@@ -134,13 +138,127 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .nb-sr{background:rgba(239,68,68,.1);color:#f87171}
 .nh{font-size:11px;font-weight:500;color:var(--t1);line-height:1.4;margin-bottom:4px}
 .nb2{font-size:10px;color:var(--t2);line-height:1.5}.nt{font-size:9px;color:var(--t3);margin-top:5px}
-.nao{display:none;margin-top:10px;background:linear-gradient(135deg,rgba(5,46,22,.25),rgba(22,163,74,.08));border-radius:var(--border-radius-md);border:1px solid rgba(34,197,94,.25);padding:14px 16px}
+.nao{display:none;margin-top:10px;background:linear-gradient(135deg,rgba(5,46,22,.25),rgba(22,163,74,.08));border-radius:var(--br-md);border:1px solid rgba(34,197,94,.25);padding:14px 16px}
 .nao.show{display:block}
 .nal{font-size:9px;font-weight:500;color:#4ade80;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
 .nal-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:pulse2 2s infinite}
 @keyframes pulse2{0%,100%{opacity:1}50%{opacity:.4}}
 .ntxt{font-size:12px;color:var(--t1);line-height:1.8;white-space:pre-wrap}
-.no-key-msg{font-size:11px;color:#f59e0b;padding:6px 0;display:flex;align-items:center;gap:6px}
+
+/* ── PORTFOLIO INTELLIGENCE VIEW ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pi-fade{opacity:0;animation:fadeUp .4s ease forwards}
+.pi-fade-1{animation-delay:.05s}.pi-fade-2{animation-delay:.1s}.pi-fade-3{animation-delay:.15s}.pi-fade-4{animation-delay:.2s}
+
+.pi-body{padding:16px 18px;background:var(--bg0)}
+
+/* hero stats */
+.pi-hero{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.pi-stat{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);padding:14px 16px}
+.pi-stat-lbl{font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.pi-stat-val{font-size:22px;font-weight:600;font-family:var(--font-mono);line-height:1.1}
+.pi-stat-sub{font-size:10px;color:var(--t3);margin-top:4px}
+.pi-stat-sub.up{color:#4ade80}.pi-stat-sub.dn{color:#f87171}
+
+/* charts row */
+.pi-charts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.pi-chart-card{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);padding:14px}
+.pi-chart-ttl{font-size:10px;font-weight:500;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.pi-chart-leg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:9px;color:var(--t2)}
+.pi-chart-leg span{display:flex;align-items:center;gap:3px}
+.pi-chart-leg i{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* trade performance table */
+.pi-tbl-section{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);margin-bottom:14px;overflow:hidden}
+.pi-tbl-hdr{padding:12px 16px;border-bottom:1px solid #232c3d;display:flex;align-items:center;justify-content:space-between}
+.pi-section-ttl{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.09em;text-transform:uppercase}
+.pi-tbl-wrap{overflow-x:auto}
+.pi-tbl{width:100%;border-collapse:collapse;font-size:11px}
+.pi-tbl thead tr{background:#0d1320;border-bottom:1px solid #232c3d}
+.pi-tbl th{padding:8px 10px;text-align:left;color:var(--t3);font-weight:500;font-size:9px;letter-spacing:.07em;white-space:nowrap;text-transform:uppercase}
+.pi-tbl td{padding:8px 10px;border-bottom:1px solid rgba(35,44,61,.6);color:var(--t1);white-space:nowrap}
+.pi-tbl tbody tr:last-child td{border-bottom:none}
+.pi-tbl tbody tr:hover td{background:rgba(37,99,235,.05)}
+.pnl-pos{color:#4ade80;font-family:var(--font-mono);font-weight:500}
+.pnl-neg{color:#f87171;font-family:var(--font-mono);font-weight:500}
+.pnl-zero{color:var(--t3);font-family:var(--font-mono)}
+.pi-tid{color:#3b82f6;font-family:var(--font-mono);font-size:10px}
+
+/* AI section */
+.pi-ai-section{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);overflow:hidden}
+.pi-ai-hdr{padding:14px 18px;border-bottom:1px solid #232c3d;display:flex;align-items:center;justify-content:space-between}
+.pi-ai-hdr-l{display:flex;align-items:center;gap:10px}
+.pi-ai-hdr-ttl{font-size:11px;font-weight:600;color:var(--t1);letter-spacing:.04em}
+.pi-powered{font-size:9px;color:var(--t3);font-family:var(--font-mono)}
+.pi-regen-btn{font-size:10px;padding:6px 14px;background:rgba(37,99,235,.15);border:1px solid rgba(59,130,246,.3);color:#93c5fd;border-radius:6px;cursor:pointer;font-family:var(--font-sans);font-weight:500;transition:all .2s;display:flex;align-items:center;gap:5px}
+.pi-regen-btn:hover{background:rgba(37,99,235,.25);color:#bfdbfe}
+.pi-regen-btn:disabled{opacity:.4;cursor:not-allowed}
+.pi-ai-body{padding:18px}
+
+/* skeleton shimmer */
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.pi-skel{background:linear-gradient(90deg,#131822 25%,#1d2535 50%,#131822 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;border-radius:6px}
+
+/* AI rendered cards */
+.pi-ai-top{margin-bottom:16px}
+.pi-headline{font-size:18px;font-weight:600;color:var(--t1);line-height:1.4;margin-bottom:10px}
+.pi-rating-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.pi-badge{display:inline-flex;align-items:center;padding:3px 12px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.12em}
+.pi-badge-strong{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.pi-badge-cautious{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+.pi-badge-atrisk{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+.pi-rating-reason{font-size:11px;color:var(--t2);margin-top:2px}
+
+.pi-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.pi-col{border-radius:10px;padding:14px}
+.pi-col-wins{background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15)}
+.pi-col-risks{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15)}
+.pi-col-actions{background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.15)}
+.pi-col-hdr{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.pi-col-wins .pi-col-hdr{color:#4ade80}
+.pi-col-risks .pi-col-hdr{color:#f87171}
+.pi-col-actions .pi-col-hdr{color:#fbbf24}
+.pi-col-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pi-col-wins .pi-col-dot{background:#4ade80}
+.pi-col-risks .pi-col-dot{background:#f87171}
+.pi-col-actions .pi-col-dot{background:#fbbf24}
+.pi-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.pi-item:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
+.pi-item-row{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:3px}
+.pi-item-title{font-size:11px;font-weight:500;color:var(--t1)}
+.pi-item-detail{font-size:10px;color:var(--t2);line-height:1.55}
+.pi-sev{display:inline-block;padding:1px 6px;border-radius:3px;font-size:8px;font-weight:600;letter-spacing:.08em;flex-shrink:0}
+.pi-sev-high{background:rgba(239,68,68,.2);color:#f87171}
+.pi-sev-medium{background:rgba(245,158,11,.2);color:#fbbf24}
+.pi-sev-low{background:rgba(34,197,94,.2);color:#4ade80}
+.pi-action-row{display:flex;gap:10px;align-items:flex-start}
+.pi-action-num{width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,.2);color:#fbbf24;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+.pi-ctx-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pi-ctx-card{background:#0d1320;border:1px solid #232c3d;border-radius:10px;padding:14px}
+.pi-ctx-ttl{font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
+.pi-ctx-txt{font-size:11px;color:var(--t2);line-height:1.75}
+
+/* API key modal */
+#api-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center}
+#api-modal.show{display:flex}
+.api-modal-box{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);padding:28px;width:420px;max-width:92vw}
+.api-modal-ttl{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:6px}
+.api-modal-desc{font-size:11px;color:var(--t2);margin-bottom:18px;line-height:1.65}
+.api-modal-inp{width:100%;background:#0a0a0c;border:1px solid #232c3d;color:var(--t1);border-radius:var(--br-md);padding:10px 12px;font-size:12px;font-family:var(--font-mono);outline:none;margin-bottom:12px;transition:border-color .15s}
+.api-modal-inp:focus{border-color:var(--blue2)}
+.api-modal-btns{display:flex;gap:8px}
+.api-modal-cancel{flex:1;padding:9px;background:none;border:1px solid #232c3d;color:var(--t2);border-radius:var(--br-md);cursor:pointer;font-size:11px;font-family:var(--font-sans);transition:all .15s}
+.api-modal-cancel:hover{border-color:var(--bdr2);color:var(--t1)}
+.api-modal-connect{flex:2;padding:9px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:var(--br-md);cursor:pointer;font-size:11px;font-weight:500;font-family:var(--font-sans)}
+.api-modal-err{display:none;margin-top:8px;font-size:10px;color:#f87171}
+
+/* no-key state */
+.pi-nokey{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center}
+.pi-nokey-icon{font-size:32px;margin-bottom:12px;color:var(--t3)}
+.pi-nokey-ttl{font-size:14px;font-weight:500;color:var(--t1);margin-bottom:6px}
+.pi-nokey-sub{font-size:11px;color:var(--t2);margin-bottom:18px;line-height:1.6}
+.pi-nokey-btn{padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:var(--br-md);cursor:pointer;font-size:11px;font-weight:500;font-family:var(--font-sans)}
 </style>
 
 <div class="wrap">
@@ -167,167 +285,294 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
     </div>
   </div>
 
+  <!-- Nav Bar -->
+  <div class="nav-bar">
+    <button class="nav-btn active" id="nb-dash" onclick="showView('dash')">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-btn" id="nb-pi" onclick="showView('pi')">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 8 L8 3"/><path d="M8 8 L12 10"/></svg>
+      Portfolio Intelligence
+    </button>
+  </div>
+
   <!-- Ticker -->
   <div class="tkr-bar">
     <div class="tkr-lbl">MARKETS</div>
     <div class="tkr-wrap"><div class="tkr-inner" id="ticker"></div></div>
   </div>
 
-  <!-- Body -->
-  <div class="body">
-    <div class="kpi-row">
-      <div class="kpi act" id="kpi-All" onclick="sf('All')"><div class="kpi-l">Total Trades</div><div class="kpi-v cvt">10</div></div>
-      <div class="kpi" id="kpi-Settled" onclick="sf('Settled')"><div class="kpi-l">Settled</div><div class="kpi-v cvs">3</div></div>
-      <div class="kpi" id="kpi-Pending" onclick="sf('Pending')"><div class="kpi-l">Pending</div><div class="kpi-v cvp">4</div></div>
-      <div class="kpi" id="kpi-Failed" onclick="sf('Failed')"><div class="kpi-l">Failed</div><div class="kpi-v cvf">1</div></div>
-      <div class="kpi" id="kpi-Overdue" onclick="sf('Overdue')"><div class="kpi-l">Overdue</div><div class="kpi-v cvo">2</div></div>
-    </div>
+  <!-- ══ DASHBOARD VIEW ══ -->
+  <div id="view-dash">
+    <div class="body">
+      <div class="kpi-row">
+        <div class="kpi act" id="kpi-All" onclick="sf('All')"><div class="kpi-l">Total Trades</div><div class="kpi-v cvt">16</div></div>
+        <div class="kpi" id="kpi-Settled" onclick="sf('Settled')"><div class="kpi-l">Settled</div><div class="kpi-v cvs">7</div></div>
+        <div class="kpi" id="kpi-Pending" onclick="sf('Pending')"><div class="kpi-l">Pending</div><div class="kpi-v cvp">6</div></div>
+        <div class="kpi" id="kpi-Failed" onclick="sf('Failed')"><div class="kpi-l">Failed</div><div class="kpi-v cvf">1</div></div>
+        <div class="kpi" id="kpi-Overdue" onclick="sf('Overdue')"><div class="kpi-l">Overdue</div><div class="kpi-v cvo">2</div></div>
+      </div>
 
-    <div class="main">
-      <div>
-        <div class="ctrl">
-          <input id="srch" placeholder="Search trades, assets, counterparties…" oninput="rt()">
-          <button class="fb act" id="fb-All" onclick="sf('All')">All</button>
-          <button class="fb" id="fb-Settled" onclick="sf('Settled')">Settled</button>
-          <button class="fb" id="fb-Pending" onclick="sf('Pending')">Pending</button>
-          <button class="fb" id="fb-Failed" onclick="sf('Failed')">Failed</button>
-          <button class="fb" id="fb-Overdue" onclick="sf('Overdue')">Overdue</button>
+      <div class="main">
+        <div>
+          <div class="ctrl">
+            <input id="srch" placeholder="Search trades, assets, counterparties…" oninput="rt()">
+            <button class="fb act" id="fb-All" onclick="sf('All')">All</button>
+            <button class="fb" id="fb-Settled" onclick="sf('Settled')">Settled</button>
+            <button class="fb" id="fb-Pending" onclick="sf('Pending')">Pending</button>
+            <button class="fb" id="fb-Failed" onclick="sf('Failed')">Failed</button>
+            <button class="fb" id="fb-Overdue" onclick="sf('Overdue')">Overdue</button>
+          </div>
+          <div class="tbl">
+            <table>
+              <thead><tr><th>Trade ID</th><th>Asset</th><th>Type</th><th>Action</th><th>Amount</th><th>Trade Dt</th><th>Settle Dt</th><th>Counterparty</th><th>Status</th></tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="det" id="det">
+            <div class="det-hdr">
+              <div><div class="det-name" id="dn"></div><div class="det-meta" id="dm"></div></div>
+              <button class="xb" onclick="cd()">×</button>
+            </div>
+            <div class="dg" id="dg"></div>
+            <div id="da"></div>
+            <button class="ai-btn" id="aib" onclick="aiTrade()">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 15l-1.5-4.5L2 8l4.5-1.5z"/></svg>
+              Analyze this trade with GPT-4o
+            </button>
+            <div class="ai-out" id="aio">
+              <div class="ai-lbl">GPT-4o Trade Analysis</div>
+              <div class="ai-txt" id="ait"></div>
+            </div>
+          </div>
+
+          <div class="charts">
+            <div class="cc"><div class="cct">Settlement breakdown</div><div class="leg" id="l1"></div><div style="position:relative;height:140px"><canvas id="pc" role="img" aria-label="Settlement chart">Settled 7, Pending 6, Failed 1, Overdue 2.</canvas></div></div>
+            <div class="cc"><div class="cct">Asset type distribution</div><div class="leg" id="l2"></div><div style="position:relative;height:140px"><canvas id="bc" role="img" aria-label="Asset bar">Equity 6, FI 3, FX 3, PE 2, Infra 1, Alts 1.</canvas></div></div>
+          </div>
         </div>
-        <div class="tbl">
-          <table>
-            <thead><tr><th>Trade ID</th><th>Asset</th><th>Type</th><th>Action</th><th>Amount</th><th>Trade Dt</th><th>Settle Dt</th><th>Counterparty</th><th>Status</th></tr></thead>
-            <tbody id="tbody"></tbody>
+
+        <div class="rp">
+          <div class="pc">
+            <div class="pct">Cash Balances</div>
+            <div class="cr"><div><div class="cccy">USD</div><div class="cbal">$42,300,000</div></div><div class="cup">+$1.2M</div></div>
+            <div class="cr"><div><div class="cccy">EUR</div><div class="cbal">€8,750,000</div></div><div class="cdn">-€850K</div></div>
+            <div class="cr"><div><div class="cccy">GBP</div><div class="cbal">£5,100,000</div></div><div class="cup">+£400K</div></div>
+            <div class="cr"><div><div class="cccy">JPY</div><div class="cbal">¥2.4B</div></div><div class="cdn">-¥120M</div></div>
+          </div>
+          <div class="pc">
+            <div class="pct">Settlement Summary</div>
+            <div class="br"><div class="bm"><span style="color:#22c55e;font-size:9px">Settled</span><span style="font-size:9px;color:var(--t3)">7 · 44%</span></div><div class="bt"><div class="bf" style="width:44%;background:#22c55e"></div></div></div>
+            <div class="br"><div class="bm"><span style="color:#f59e0b;font-size:9px">Pending</span><span style="font-size:9px;color:var(--t3)">6 · 38%</span></div><div class="bt"><div class="bf" style="width:38%;background:#f59e0b"></div></div></div>
+            <div class="br"><div class="bm"><span style="color:#ef4444;font-size:9px">Failed</span><span style="font-size:9px;color:var(--t3)">1 · 6%</span></div><div class="bt"><div class="bf" style="width:6%;background:#ef4444"></div></div></div>
+            <div class="br"><div class="bm"><span style="color:#f97316;font-size:9px">Overdue</span><span style="font-size:9px;color:var(--t3)">2 · 13%</span></div><div class="bt"><div class="bf" style="width:13%;background:#f97316"></div></div></div>
+          </div>
+          <div class="pc">
+            <div class="pct">Alerts</div>
+            <div class="al2 al-f"><div class="al-top"><span style="color:#f87171">FAILED</span><span style="color:var(--t3)">TRD-004</span></div><div class="al-a">EUR/USD FX Forward</div><div class="al-c">Deutsche Bank · €850,000</div></div>
+            <div class="al2 al-o"><div class="al-top"><span style="color:#fb923c">OVERDUE</span><span style="color:var(--t3)">TRD-005</span></div><div class="al-a">Blackstone Real Estate Fund</div><div class="al-c">BNY Mellon · $3,000,000</div></div>
+            <div class="al2 al-o"><div class="al-top"><span style="color:#fb923c">OVERDUE</span><span style="color:var(--t3)">TRD-010</span></div><div class="al-a">Tesla Inc (TSLA)</div><div class="al-c">UBS · $92,400</div></div>
+          </div>
+          <div class="pc">
+            <div class="pct">Quick Reference</div>
+            <div class="qr"><span class="qt">T+0</span><span class="qd">Trade date (today)</span></div>
+            <div class="qr"><span class="qt">T+1</span><span class="qd">1 business day after</span></div>
+            <div class="qr"><span class="qt">T+2</span><span class="qd">Standard settlement</span></div>
+            <div class="qr"><span class="qt" style="color:#f97316">OD</span><span class="qd">Past T+2, escalate</span></div>
+            <div class="qr"><span class="qt" style="color:#ef4444">Break</span><span class="qd">Record mismatch</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news">
+        <div class="news-hdr">
+          <div class="news-ttl">Market Intelligence &amp; Portfolio Context</div>
+          <button class="naibtn" id="nbtn" onclick="nai()">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 15l-1.5-4.5L2 8l4.5-1.5z"/></svg>
+            Summarize portfolio impact
+          </button>
+        </div>
+        <div class="ngrid">
+          <div class="nc"><div class="nb nb-e">Equity</div><div class="nh">Apple beats Q2; services revenue +14% YoY</div><div class="nb2">AAPL rallied 3.2% post-earnings on strong iPhone demand and expanding services margin through H2 2026.</div><div class="nt">Reuters · 1h ago</div></div>
+          <div class="nc"><div class="nb nb-fi">Fixed Income</div><div class="nh">Fed holds rates; signals one cut possible Q3 2026</div><div class="nb2">Target range held at 4.25–4.50%. Treasury yields dipped on guidance, benefiting existing bond positions.</div><div class="nt">Bloomberg · 3h ago</div></div>
+          <div class="nc"><div class="nb nb-fx">FX</div><div class="nh">EUR weakens as ECB hints at further easing</div><div class="nb2">EUR/USD slipped to 1.073 on ECB commentary suggesting two additional rate cuts, pressuring FX positions.</div><div class="nt">FT · 2h ago</div></div>
+          <div class="nc"><div class="nb nb-e">Equity</div><div class="nh">TSLA misses delivery targets; stock -7% WoW</div><div class="nb2">Q1 deliveries below consensus. Overdue TRD-010 settlement with UBS compounds short-term risk exposure.</div><div class="nt">WSJ · 5h ago</div></div>
+          <div class="nc"><div class="nb nb-m">Market</div><div class="nh">Blackstone closes record $30B infrastructure fund</div><div class="nb2">Strong institutional demand validates the Blackstone allocation and Infrastructure Debt Fund III position.</div><div class="nt">Barron's · 6h ago</div></div>
+          <div class="nc"><div class="nb nb-sr">Settlement Risk</div><div class="nh">Deutsche Bank maintenance flagged May 16 EST</div><div class="nb2">Planned maintenance on May 16 is the likely contributor to the EUR/USD FX Forward failure in TRD-004.</div><div class="nt">Risk.net · 4h ago</div></div>
+        </div>
+        <div class="nao" id="nao">
+          <div class="nal"><div class="nal-dot"></div>GPT-4o Portfolio Impact Summary</div>
+          <div class="ntxt" id="ntxt"></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /view-dash -->
+
+  <!-- ══ PORTFOLIO INTELLIGENCE VIEW ══ -->
+  <div id="view-pi" style="display:none">
+    <div class="pi-body">
+
+      <!-- Hero Stats -->
+      <div class="pi-hero pi-fade">
+        <div class="pi-stat">
+          <div class="pi-stat-lbl">Total AUM</div>
+          <div class="pi-stat-val" style="color:#3b82f6" id="pi-aum">$21.7M</div>
+          <div class="pi-stat-sub">16 trades · all classes</div>
+        </div>
+        <div class="pi-stat">
+          <div class="pi-stat-lbl">Unrealized P&amp;L</div>
+          <div class="pi-stat-val" id="pi-pnl" style="color:#4ade80">+$151.2K</div>
+          <div class="pi-stat-sub up" id="pi-pnl-sub">+0.70% of AUM</div>
+        </div>
+        <div class="pi-stat">
+          <div class="pi-stat-lbl">Settlement Rate</div>
+          <div class="pi-stat-val" style="color:#fbbf24" id="pi-settle">43.8%</div>
+          <div class="pi-stat-sub">7 of 16 settled</div>
+        </div>
+        <div class="pi-stat">
+          <div class="pi-stat-lbl">At-Risk Exposure</div>
+          <div class="pi-stat-val" style="color:#f87171" id="pi-risk">$4.0M</div>
+          <div class="pi-stat-sub dn">2 overdue · 1 failed</div>
+        </div>
+        <div class="pi-stat">
+          <div class="pi-stat-lbl">Active Trades</div>
+          <div class="pi-stat-val" style="color:#a78bfa" id="pi-active">6</div>
+          <div class="pi-stat-sub">pending settlement</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="pi-charts pi-fade pi-fade-1">
+        <div class="pi-chart-card">
+          <div class="pi-chart-ttl">Asset Allocation</div>
+          <div class="pi-chart-leg" id="pi-leg-alloc"></div>
+          <div style="position:relative;height:160px"><canvas id="pi-donut"></canvas></div>
+        </div>
+        <div class="pi-chart-card">
+          <div class="pi-chart-ttl">Trade Status</div>
+          <div class="pi-chart-leg" id="pi-leg-status"></div>
+          <div style="position:relative;height:160px"><canvas id="pi-status-chart"></canvas></div>
+        </div>
+        <div class="pi-chart-card">
+          <div class="pi-chart-ttl">P&amp;L by Asset Class</div>
+          <div style="position:relative;height:185px"><canvas id="pi-pnl-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Trade Performance Table -->
+      <div class="pi-tbl-section pi-fade pi-fade-2">
+        <div class="pi-tbl-hdr">
+          <div class="pi-section-ttl">Trade Performance</div>
+          <div style="font-size:9px;color:var(--t3)">Sorted by P&amp;L · all 16 trades</div>
+        </div>
+        <div class="pi-tbl-wrap">
+          <table class="pi-tbl">
+            <thead>
+              <tr>
+                <th>ID</th><th>Asset</th><th>Type</th><th>Action</th>
+                <th>Notional</th><th>P&amp;L ($)</th><th>P&amp;L (%)</th>
+                <th>Status</th><th>Counterparty</th>
+              </tr>
+            </thead>
+            <tbody id="pi-tbody"></tbody>
           </table>
         </div>
+      </div>
 
-        <div class="det" id="det">
-          <div class="det-hdr">
-            <div><div class="det-name" id="dn"></div><div class="det-meta" id="dm"></div></div>
-            <button class="xb" onclick="cd()">×</button>
+      <!-- AI Intelligence Panel -->
+      <div class="pi-ai-section pi-fade pi-fade-3">
+        <div class="pi-ai-hdr">
+          <div class="pi-ai-hdr-l">
+            <div class="pi-ai-hdr-ttl">AI Portfolio Intelligence</div>
+            <div class="pi-powered">claude-sonnet-4-20250514</div>
           </div>
-          <div class="dg" id="dg"></div>
-          <div id="da"></div>
-          <button class="ai-btn" id="aib" onclick="aiTrade()">
-            <i class="ti ti-sparkles" aria-hidden="true"></i> Analyze this trade with GPT-4o
+          <button class="pi-regen-btn" id="pi-regen" onclick="runPiAnalysis()">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5"/><path d="M9 1l3 2-2 3"/></svg>
+            Regenerate
           </button>
-          <div class="ai-out" id="aio">
-            <div class="ai-lbl">GPT-4o Trade Analysis</div>
-            <div class="ai-txt" id="ait"></div>
-          </div>
         </div>
-
-        <div class="charts">
-          <div class="cc"><div class="cct">Settlement breakdown</div><div class="leg" id="l1"></div><div style="position:relative;height:140px"><canvas id="pc" role="img" aria-label="Settlement chart">Settled 3, Pending 4, Failed 1, Overdue 2.</canvas></div></div>
-          <div class="cc"><div class="cct">Asset type distribution</div><div class="leg" id="l2"></div><div style="position:relative;height:140px"><canvas id="bc" role="img" aria-label="Asset bar">Equity 4, FI 2, FX 2, PE 1, Infra 1.</canvas></div></div>
+        <div class="pi-ai-body" id="pi-ai-body">
+          <!-- skeleton / cards render here -->
         </div>
       </div>
 
-      <div class="rp">
-        <div class="pc">
-          <div class="pct"><i class="ti ti-cash" aria-hidden="true" style="font-size:10px"></i> Cash Balances</div>
-          <div class="cr"><div><div class="cccy">USD</div><div class="cbal">$42,300,000</div></div><div class="cup">+$1.2M</div></div>
-          <div class="cr"><div><div class="cccy">EUR</div><div class="cbal">€8,750,000</div></div><div class="cdn">-€850K</div></div>
-          <div class="cr"><div><div class="cccy">GBP</div><div class="cbal">£5,100,000</div></div><div class="cup">+£400K</div></div>
-          <div class="cr"><div><div class="cccy">JPY</div><div class="cbal">¥2.4B</div></div><div class="cdn">-¥120M</div></div>
-        </div>
-        <div class="pc">
-          <div class="pct"><i class="ti ti-chart-bar" aria-hidden="true" style="font-size:10px"></i> Settlement Summary</div>
-          <div class="br"><div class="bm"><span style="color:#22c55e;font-size:9px">Settled</span><span style="font-size:9px;color:var(--t3)">3 · 30%</span></div><div class="bt"><div class="bf" style="width:30%;background:#22c55e"></div></div></div>
-          <div class="br"><div class="bm"><span style="color:#f59e0b;font-size:9px">Pending</span><span style="font-size:9px;color:var(--t3)">4 · 40%</span></div><div class="bt"><div class="bf" style="width:40%;background:#f59e0b"></div></div></div>
-          <div class="br"><div class="bm"><span style="color:#ef4444;font-size:9px">Failed</span><span style="font-size:9px;color:var(--t3)">1 · 10%</span></div><div class="bt"><div class="bf" style="width:10%;background:#ef4444"></div></div></div>
-          <div class="br"><div class="bm"><span style="color:#f97316;font-size:9px">Overdue</span><span style="font-size:9px;color:var(--t3)">2 · 20%</span></div><div class="bt"><div class="bf" style="width:20%;background:#f97316"></div></div></div>
-        </div>
-        <div class="pc">
-          <div class="pct"><i class="ti ti-bell" aria-hidden="true" style="font-size:10px"></i> Alerts</div>
-          <div class="al2 al-f"><div class="al-top"><span style="color:#f87171">FAILED</span><span style="color:var(--t3)">TRD-004</span></div><div class="al-a">EUR/USD FX Forward</div><div class="al-c">Deutsche Bank · €850,000</div></div>
-          <div class="al2 al-o"><div class="al-top"><span style="color:#fb923c">OVERDUE</span><span style="color:var(--t3)">TRD-005</span></div><div class="al-a">Blackstone Real Estate Fund</div><div class="al-c">BNY Mellon · $3,000,000</div></div>
-          <div class="al2 al-o"><div class="al-top"><span style="color:#fb923c">OVERDUE</span><span style="color:var(--t3)">TRD-010</span></div><div class="al-a">Tesla Inc (TSLA)</div><div class="al-c">UBS · $92,400</div></div>
-        </div>
-        <div class="pc">
-          <div class="pct"><i class="ti ti-book" aria-hidden="true" style="font-size:10px"></i> Quick Reference</div>
-          <div class="qr"><span class="qt">T+0</span><span class="qd">Trade date (today)</span></div>
-          <div class="qr"><span class="qt">T+1</span><span class="qd">1 business day after</span></div>
-          <div class="qr"><span class="qt">T+2</span><span class="qd">Standard settlement</span></div>
-          <div class="qr"><span class="qt" style="color:#f97316">OD</span><span class="qd">Past T+2, escalate</span></div>
-          <div class="qr"><span class="qt" style="color:#ef4444">Break</span><span class="qd">Record mismatch</span></div>
-        </div>
-      </div>
     </div>
+  </div><!-- /view-pi -->
 
-    <!-- News -->
-    <div class="news">
-      <div class="news-hdr">
-        <div class="news-ttl"><i class="ti ti-news" aria-hidden="true" style="font-size:10px;margin-right:4px"></i> Market Intelligence &amp; Portfolio Context</div>
-        <button class="naibtn" id="nbtn" onclick="nai()">
-          <i class="ti ti-sparkles" aria-hidden="true"></i> Summarize portfolio impact
-        </button>
-      </div>
-      <div class="ngrid">
-        <div class="nc"><div class="nb nb-e">Equity</div><div class="nh">Apple beats Q2; services revenue +14% YoY</div><div class="nb2">AAPL rallied 3.2% post-earnings on strong iPhone demand and expanding services margin through H2 2026.</div><div class="nt">Reuters · 1h ago</div></div>
-        <div class="nc"><div class="nb nb-fi">Fixed Income</div><div class="nh">Fed holds rates; signals one cut possible Q3 2026</div><div class="nb2">Target range held at 4.25–4.50%. Treasury yields dipped on guidance, benefiting existing bond positions.</div><div class="nt">Bloomberg · 3h ago</div></div>
-        <div class="nc"><div class="nb nb-fx">FX</div><div class="nh">EUR weakens as ECB hints at further easing</div><div class="nb2">EUR/USD slipped to 1.073 on ECB commentary suggesting two additional rate cuts, pressuring FX positions.</div><div class="nt">FT · 2h ago</div></div>
-        <div class="nc"><div class="nb nb-e">Equity</div><div class="nh">TSLA misses delivery targets; stock -7% WoW</div><div class="nb2">Q1 deliveries below consensus. Overdue TRD-010 settlement with UBS compounds short-term risk exposure.</div><div class="nt">WSJ · 5h ago</div></div>
-        <div class="nc"><div class="nb nb-m">Market</div><div class="nh">Blackstone closes record $30B infrastructure fund</div><div class="nb2">Strong institutional demand validates the Blackstone allocation and Infrastructure Debt Fund III position.</div><div class="nt">Barron's · 6h ago</div></div>
-        <div class="nc"><div class="nb nb-sr">Settlement Risk</div><div class="nh">Deutsche Bank maintenance flagged May 16 EST</div><div class="nb2">Planned maintenance on May 16 is the likely contributor to the EUR/USD FX Forward failure in TRD-004.</div><div class="nt">Risk.net · 4h ago</div></div>
-      </div>
-      <div class="nao" id="nao">
-        <div class="nal"><div class="nal-dot"></div>GPT-4o Portfolio Impact Summary</div>
-        <div class="ntxt" id="ntxt"></div>
-      </div>
+</div><!-- /wrap -->
+
+<!-- API Key Modal -->
+<div id="api-modal">
+  <div class="api-modal-box">
+    <div class="api-modal-ttl">Anthropic API Key Required</div>
+    <div class="api-modal-desc">Portfolio Intelligence uses Claude AI directly from your browser. Your key is stored only in sessionStorage and is never sent to Ares servers.</div>
+    <input class="api-modal-inp" id="api-key-inp" type="password" placeholder="sk-ant-api03-…" onkeydown="if(event.key==='Enter')saveApiKey()">
+    <div class="api-modal-btns">
+      <button class="api-modal-cancel" onclick="cancelApiModal()">Cancel</button>
+      <button class="api-modal-connect" onclick="saveApiKey()">Connect to Claude</button>
     </div>
+    <div class="api-modal-err" id="api-key-err"></div>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 
-
-// ── OpenAI call (proxied securely via Vercel serverless function) ──────────
+// ── OpenAI proxy (existing dashboard) ────────────────────────────────────────
 async function callGPT(systemPrompt, userPrompt, maxTokens=600){
   const resp = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ systemPrompt, userPrompt, maxTokens })
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({systemPrompt,userPrompt,maxTokens})
   });
   if(!resp.ok){
     const err = await resp.json().catch(()=>({error:`HTTP ${resp.status}`}));
-    throw new Error(err.error || `HTTP ${resp.status}`);
+    throw new Error(err.error||`HTTP ${resp.status}`);
   }
   const data = await resp.json();
-  return data.result || "No response.";
+  return data.result||"No response.";
 }
 
-// ── Typing dots ───────────────────────────────────────────────────────────
 function showTyping(el){
   el.innerHTML=`<div class="ai-typing"><span></span><span></span><span></span></div>`;
 }
 
-// ── System prompt ─────────────────────────────────────────────────────────
 const SYS = "You are a senior investment operations analyst at Ares Wealth Management Solutions. Your analysis is professional, concise, and immediately actionable. Write in plain paragraphs only — no bullet points, no markdown symbols, no asterisks.";
 
-// ── Trade data ─────────────────────────────────────────────────────────────
-const trades=[
-  {id:"TRD-001",asset:"Apple Inc (AAPL)",type:"Equity",action:"BUY",amount:"$248,500",ccy:"USD",td:"2026-05-13",sd:"2026-05-15",cp:"Goldman Sachs",status:"Settled"},
-  {id:"TRD-002",asset:"US Treasury 4.5% 2030",type:"Fixed Income",action:"BUY",amount:"$1,200,000",ccy:"USD",td:"2026-05-14",sd:"2026-05-16",cp:"JPMorgan",status:"Settled"},
-  {id:"TRD-003",asset:"Microsoft Corp (MSFT)",type:"Equity",action:"SELL",amount:"$520,000",ccy:"USD",td:"2026-05-15",sd:"2026-05-19",cp:"Morgan Stanley",status:"Pending"},
-  {id:"TRD-004",asset:"EUR/USD FX Forward",type:"FX",action:"BUY",amount:"€850,000",ccy:"EUR",td:"2026-05-14",sd:"2026-05-16",cp:"Deutsche Bank",status:"Failed"},
-  {id:"TRD-005",asset:"Blackstone Real Estate Fund",type:"Private Equity",action:"BUY",amount:"$3,000,000",ccy:"USD",td:"2026-05-12",sd:"2026-05-14",cp:"BNY Mellon",status:"Overdue"},
-  {id:"TRD-006",asset:"Amazon.com Inc (AMZN)",type:"Equity",action:"BUY",amount:"$185,200",ccy:"USD",td:"2026-05-16",sd:"2026-05-20",cp:"Citi",status:"Pending"},
-  {id:"TRD-007",asset:"GBP Corporate Bond 5.2%",type:"Fixed Income",action:"SELL",amount:"£400,000",ccy:"GBP",td:"2026-05-13",sd:"2026-05-15",cp:"Barclays",status:"Settled"},
-  {id:"TRD-008",asset:"Infrastructure Debt Fund III",type:"Infrastructure",action:"BUY",amount:"$5,500,000",ccy:"USD",td:"2026-05-15",sd:"2026-05-17",cp:"State Street",status:"Pending"},
-  {id:"TRD-009",asset:"JPY/USD Spot FX",type:"FX",action:"SELL",amount:"¥120,000,000",ccy:"JPY",td:"2026-05-16",sd:"2026-05-18",cp:"MUFG",status:"Pending"},
-  {id:"TRD-010",asset:"Tesla Inc (TSLA)",type:"Equity",action:"SELL",amount:"$92,400",ccy:"USD",td:"2026-05-12",sd:"2026-05-14",cp:"UBS",status:"Overdue"},
+// ── Trade data (16 trades) ────────────────────────────────────────────────────
+const trades = [
+  {id:"TRD-001",asset:"Apple Inc (AAPL)",        type:"Equity",         action:"BUY", amount:"$248,500",     notionalUSD:248500,  ccy:"USD",td:"2026-05-13",sd:"2026-05-15",cp:"Goldman Sachs",  status:"Settled",    pnl:7952,    pnlPct:3.2},
+  {id:"TRD-002",asset:"US Treasury 4.5% 2030",   type:"Fixed Income",   action:"BUY", amount:"$1,200,000",   notionalUSD:1200000, ccy:"USD",td:"2026-05-14",sd:"2026-05-16",cp:"JPMorgan",       status:"Settled",    pnl:-8400,   pnlPct:-0.7},
+  {id:"TRD-003",asset:"Microsoft Corp (MSFT)",    type:"Equity",         action:"SELL",amount:"$520,000",     notionalUSD:520000,  ccy:"USD",td:"2026-05-15",sd:"2026-05-19",cp:"Morgan Stanley", status:"Pending",    pnl:-10920,  pnlPct:-2.1},
+  {id:"TRD-004",asset:"EUR/USD FX Forward",       type:"FX",             action:"BUY", amount:"€850,000",     notionalUSD:912050,  ccy:"EUR",td:"2026-05-14",sd:"2026-05-16",cp:"Deutsche Bank",  status:"Failed",     pnl:null,    pnlPct:null},
+  {id:"TRD-005",asset:"Blackstone Real Estate",   type:"Private Equity", action:"BUY", amount:"$3,000,000",   notionalUSD:3000000, ccy:"USD",td:"2026-05-12",sd:"2026-05-14",cp:"BNY Mellon",     status:"Overdue",    pnl:0,       pnlPct:0},
+  {id:"TRD-006",asset:"Amazon.com Inc (AMZN)",    type:"Equity",         action:"BUY", amount:"$185,200",     notionalUSD:185200,  ccy:"USD",td:"2026-05-16",sd:"2026-05-20",cp:"Citi",           status:"Pending",    pnl:3334,    pnlPct:1.8},
+  {id:"TRD-007",asset:"GBP Corporate Bond 5.2%",  type:"Fixed Income",   action:"SELL",amount:"£400,000",     notionalUSD:508800,  ccy:"GBP",td:"2026-05-13",sd:"2026-05-15",cp:"Barclays",       status:"Settled",    pnl:-5200,   pnlPct:-1.3},
+  {id:"TRD-008",asset:"Infrastructure Debt III",  type:"Infrastructure", action:"BUY", amount:"$5,500,000",   notionalUSD:5500000, ccy:"USD",td:"2026-05-15",sd:"2026-05-17",cp:"State Street",   status:"Pending",    pnl:0,       pnlPct:0},
+  {id:"TRD-009",asset:"JPY/USD Spot FX",          type:"FX",             action:"SELL",amount:"¥120,000,000", notionalUSD:774194,  ccy:"JPY",td:"2026-05-16",sd:"2026-05-18",cp:"MUFG",           status:"Pending",    pnl:4400,    pnlPct:0.4},
+  {id:"TRD-010",asset:"Tesla Inc (TSLA)",          type:"Equity",         action:"SELL",amount:"$92,400",      notionalUSD:92400,   ccy:"USD",td:"2026-05-12",sd:"2026-05-14",cp:"UBS",             status:"Overdue",    pnl:6468,    pnlPct:7.0},
+  {id:"TRD-011",asset:"Nvidia Corp (NVDA)",        type:"Equity",         action:"BUY", amount:"$875,000",     notionalUSD:875000,  ccy:"USD",td:"2026-05-12",sd:"2026-05-14",cp:"Goldman Sachs",  status:"Settled",    pnl:105000,  pnlPct:12.0},
+  {id:"TRD-012",asset:"SPDR Gold ETF (GLD)",       type:"Alternatives",   action:"BUY", amount:"$620,000",     notionalUSD:620000,  ccy:"USD",td:"2026-05-13",sd:"2026-05-15",cp:"JPMorgan",       status:"Settled",    pnl:14260,   pnlPct:2.3},
+  {id:"TRD-013",asset:"SPDR S&P 500 ETF (SPY)",   type:"Equity",         action:"BUY", amount:"$2,100,000",   notionalUSD:2100000, ccy:"USD",td:"2026-05-14",sd:"2026-05-16",cp:"State Street",   status:"Settled",    pnl:31500,   pnlPct:1.5},
+  {id:"TRD-014",asset:"EUR/GBP FX Spot",           type:"FX",             action:"SELL",amount:"€500,000",     notionalUSD:536500,  ccy:"EUR",td:"2026-05-16",sd:"2026-05-18",cp:"Barclays",       status:"Settled",    pnl:2800,    pnlPct:0.6},
+  {id:"TRD-015",asset:"India Gov Bond 7.1% 2033",  type:"Fixed Income",   action:"BUY", amount:"$450,000",     notionalUSD:450000,  ccy:"USD",td:"2026-05-17",sd:"2026-05-21",cp:"HDFC Bank",      status:"Pending",    pnl:0,       pnlPct:0},
+  {id:"TRD-016",asset:"Private Credit Fund IV",    type:"Private Equity", action:"BUY", amount:"$4,200,000",   notionalUSD:4200000, ccy:"USD",td:"2026-05-15",sd:"2026-05-22",cp:"Apollo",         status:"Pending",    pnl:0,       pnlPct:0},
 ];
-const typeTag={Equity:"te","Fixed Income":"tf",FX:"tx","Private Equity":"tp",Infrastructure:"ti2"};
-let filt="All",sel=null;
 
+const typeTag={Equity:"te","Fixed Income":"tf",FX:"tx","Private Equity":"tp",Infrastructure:"ti2",Alternatives:"ta"};
+let filt="All", sel=null;
+
+// ── Dashboard filter & render ─────────────────────────────────────────────────
 function sf(f){
   filt=f;
   document.querySelectorAll(".fb,.kpi").forEach(e=>e.classList.remove("act"));
-  const fb=document.getElementById("fb-"+f);if(fb)fb.classList.add("act");
-  const kb=document.getElementById("kpi-"+f);if(kb)kb.classList.add("act");
+  const fb=document.getElementById("fb-"+f); if(fb)fb.classList.add("act");
+  const kb=document.getElementById("kpi-"+f); if(kb)kb.classList.add("act");
   rt();
 }
+
 function rt(){
   const q=document.getElementById("srch").value.toLowerCase();
   const filtered=trades.filter(t=>(filt==="All"||t.status===filt)&&(!q||t.asset.toLowerCase().includes(q)||t.id.toLowerCase().includes(q)||t.cp.toLowerCase().includes(q)));
@@ -346,10 +591,11 @@ function rt(){
     <td><span class="st ${stClass[t.status]||'sp'}">${t.status}</span></td>
   </tr>`).join("");
 }
+
 function selectTrade(id){
-  const t=trades.find(x=>x.id===id);if(!t)return;
+  const t=trades.find(x=>x.id===id); if(!t)return;
   if(sel?.id===id){cd();return;}
-  sel=t;rt();
+  sel=t; rt();
   document.getElementById("det").classList.add("open");
   document.getElementById("dn").textContent=t.asset;
   document.getElementById("dm").textContent=`${t.id} · ${t.ccy}`;
@@ -362,78 +608,448 @@ function selectTrade(id){
 }
 function cd(){sel=null;document.getElementById("det").classList.remove("open");rt();}
 
-// ── Trade AI ──────────────────────────────────────────────────────────────
+// ── Trade AI (existing) ───────────────────────────────────────────────────────
 async function aiTrade(){
   if(!sel)return;
   const btn=document.getElementById("aib");
-  btn.disabled=true;btn.innerHTML=`<i class="ti ti-loader"></i> Generating…`;
-  const out=document.getElementById("aio");const txt=document.getElementById("ait");
-  out.classList.add("show");showTyping(txt);
-  const prompt=`Analyze this trade and write a 4-5 sentence professional operations assessment covering: (1) what the current status means operationally and financially, (2) counterparty risk and exposure, (3) relevant market conditions for this asset class today, and (4) specific recommended actions for the ops team.
-
-Trade: ${sel.id} | ${sel.asset} | ${sel.type} | ${sel.action} ${sel.amount} ${sel.ccy}
-Dates: Trade ${sel.td} → Settle ${sel.sd} | Counterparty: ${sel.cp} | Status: ${sel.status}`;
-  try{
-    txt.textContent = await callGPT(SYS, prompt, 450);
-  }catch(e){
-    txt.textContent = `Error: ${e.message}`;
-  }
-  btn.disabled=false;btn.innerHTML=`<i class="ti ti-sparkles"></i> Analyze this trade with GPT-4o`;
+  btn.disabled=true; btn.innerHTML=`<span style="opacity:.6">Generating…</span>`;
+  const out=document.getElementById("aio"); const txt=document.getElementById("ait");
+  out.classList.add("show"); showTyping(txt);
+  const prompt=`Analyze this trade and write a 4-5 sentence professional operations assessment covering: (1) what the current status means operationally and financially, (2) counterparty risk and exposure, (3) relevant market conditions for this asset class today, and (4) specific recommended actions for the ops team.\n\nTrade: ${sel.id} | ${sel.asset} | ${sel.type} | ${sel.action} ${sel.amount} ${sel.ccy}\nDates: Trade ${sel.td} → Settle ${sel.sd} | Counterparty: ${sel.cp} | Status: ${sel.status}`;
+  try{ txt.textContent = await callGPT(SYS,prompt,450); }
+  catch(e){ txt.textContent=`Error: ${e.message}`; }
+  btn.disabled=false; btn.innerHTML=`<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 15l-1.5-4.5L2 8l4.5-1.5z"/></svg> Analyze this trade with GPT-4o`;
 }
 
-// ── Portfolio AI ──────────────────────────────────────────────────────────
+// ── Portfolio AI (existing) ───────────────────────────────────────────────────
 async function nai(){
   const btn=document.getElementById("nbtn");
-  btn.disabled=true;btn.innerHTML=`<i class="ti ti-loader"></i> Analyzing…`;
-  const out=document.getElementById("nao");const txt=document.getElementById("ntxt");
-  out.classList.add("show");showTyping(txt);
-  const prompt=`Write a 5-6 sentence strategic portfolio summary for the Ares ops desk covering: (1) portfolio wins from today's market news, (2) the 3 trades requiring immediate action and why, (3) FX and rates implications, (4) top priority recommended actions for the team today.
-
-TRADE BOOK:
-TRD-001: AAPL BUY $248,500 Goldman Sachs — SETTLED
-TRD-002: US Treasury 4.5% BUY $1,200,000 JPMorgan — SETTLED
-TRD-003: MSFT SELL $520,000 Morgan Stanley — PENDING (settles 2026-05-19)
-TRD-004: EUR/USD FX Forward BUY €850,000 Deutsche Bank — FAILED
-TRD-005: Blackstone Real Estate BUY $3,000,000 BNY Mellon — OVERDUE past T+2
-TRD-006: AMZN BUY $185,200 Citi — PENDING (settles 2026-05-20)
-TRD-007: GBP Bond 5.2% SELL £400,000 Barclays — SETTLED
-TRD-008: Infrastructure Debt Fund III BUY $5,500,000 State Street — PENDING (settles 2026-05-17)
-TRD-009: JPY/USD Spot FX SELL ¥120,000,000 MUFG — PENDING (settles 2026-05-18)
-TRD-010: TSLA SELL $92,400 UBS — OVERDUE past T+2
-
-MARKET NEWS TODAY:
-1. Apple Q2 beat — services +14%, stock +3.2%
-2. Fed holds at 4.25-4.50% — one cut possible Q3 2026
-3. EUR/USD fell to 1.073 — ECB hints two more cuts
-4. Tesla Q1 deliveries miss — stock -7% WoW
-5. Blackstone closes $30B infrastructure fund
-6. Deutsche Bank maintenance May 16 — caused TRD-004 failure`;
-  try{
-    txt.textContent = await callGPT(SYS, prompt, 600);
-  }catch(e){
-    txt.textContent = `Error: ${e.message}`;
-  }
-  btn.disabled=false;btn.innerHTML=`<i class="ti ti-sparkles"></i> Summarize portfolio impact`;
+  btn.disabled=true; btn.innerHTML=`<span style="opacity:.6">Analyzing…</span>`;
+  const out=document.getElementById("nao"); const txt=document.getElementById("ntxt");
+  out.classList.add("show"); showTyping(txt);
+  const prompt=`Write a 5-6 sentence strategic portfolio summary for the Ares ops desk covering: (1) portfolio wins from today's market news, (2) the 3 trades requiring immediate action and why, (3) FX and rates implications, (4) top priority recommended actions for the team today.\n\nTRADE BOOK:\nTRD-001: AAPL BUY $248,500 Goldman Sachs — SETTLED\nTRD-002: US Treasury 4.5% BUY $1,200,000 JPMorgan — SETTLED\nTRD-003: MSFT SELL $520,000 Morgan Stanley — PENDING (settles 2026-05-19)\nTRD-004: EUR/USD FX Forward BUY €850,000 Deutsche Bank — FAILED\nTRD-005: Blackstone Real Estate BUY $3,000,000 BNY Mellon — OVERDUE past T+2\nTRD-006: AMZN BUY $185,200 Citi — PENDING (settles 2026-05-20)\nTRD-007: GBP Bond 5.2% SELL £400,000 Barclays — SETTLED\nTRD-008: Infrastructure Debt Fund III BUY $5,500,000 State Street — PENDING (settles 2026-05-17)\nTRD-009: JPY/USD Spot FX SELL ¥120,000,000 MUFG — PENDING (settles 2026-05-18)\nTRD-010: TSLA SELL $92,400 UBS — OVERDUE past T+2\n\nMARKET NEWS TODAY:\n1. Apple Q2 beat — services +14%, stock +3.2%\n2. Fed holds at 4.25-4.50% — one cut possible Q3 2026\n3. EUR/USD fell to 1.073 — ECB hints two more cuts\n4. Tesla Q1 deliveries miss — stock -7% WoW\n5. Blackstone closes $30B infrastructure fund\n6. Deutsche Bank maintenance May 16 — caused TRD-004 failure`;
+  try{ txt.textContent = await callGPT(SYS,prompt,600); }
+  catch(e){ txt.textContent=`Error: ${e.message}`; }
+  btn.disabled=false; btn.innerHTML=`<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 15l-1.5-4.5L2 8l4.5-1.5z"/></svg> Summarize portfolio impact`;
 }
 
-// ── Clock ─────────────────────────────────────────────────────────────────
+// ── Clock ─────────────────────────────────────────────────────────────────────
 function uc(){document.getElementById("clock").textContent=new Date().toLocaleTimeString("en-US",{hour12:false,timeZone:"America/New_York"})+" EST";}
-setInterval(uc,1000);uc();
+setInterval(uc,1000); uc();
 
-// ── Ticker ────────────────────────────────────────────────────────────────
-const tks=[{s:"AAPL",p:"212.47",d:"+3.2%",u:1},{s:"MSFT",p:"428.30",d:"-0.8%",u:0},{s:"AMZN",p:"195.60",d:"+1.1%",u:1},{s:"TSLA",p:"148.20",d:"-7.0%",u:0},{s:"EUR/USD",p:"1.073",d:"-0.4%",u:0},{s:"GBP/USD",p:"1.272",d:"+0.2%",u:1},{s:"US10Y",p:"4.38%",d:"-0.05",u:1},{s:"GOLD",p:"3,312",d:"+0.6%",u:1},{s:"SPX",p:"5,842",d:"+0.9%",u:1}];
+// ── Ticker ────────────────────────────────────────────────────────────────────
+const tks=[{s:"AAPL",p:"212.47",d:"+3.2%",u:1},{s:"MSFT",p:"428.30",d:"-0.8%",u:0},{s:"AMZN",p:"195.60",d:"+1.1%",u:1},{s:"TSLA",p:"148.20",d:"-7.0%",u:0},{s:"NVDA",p:"975.00",d:"+12.0%",u:1},{s:"EUR/USD",p:"1.073",d:"-0.4%",u:0},{s:"GBP/USD",p:"1.272",d:"+0.2%",u:1},{s:"US10Y",p:"4.38%",d:"-0.05",u:1},{s:"GOLD",p:"3,312",d:"+0.6%",u:1},{s:"SPX",p:"5,842",d:"+0.9%",u:1}];
 document.getElementById("ticker").innerHTML=[...tks,...tks].map(t=>`<span class="ti">${t.s} <strong>${t.p}</strong><span class="${t.u?'tup':'tdn'}">${t.d}</span></span>`).join("");
 
+// ── Dashboard Charts (on load) ────────────────────────────────────────────────
 rt();
 setTimeout(()=>{
+  // Settlement doughnut
   const pc2=["#22c55e","#f59e0b","#ef4444","#f97316"];
   const pl=["Settled","Pending","Failed","Overdue"];
-  const pd=[3,4,1,2];
+  const pd=[7,6,1,2];
   document.getElementById("l1").innerHTML=pl.map((l,i)=>`<span style="display:flex;align-items:center;gap:3px"><span class="ld" style="background:${pc2[i]}"></span>${l} ${pd[i]}</span>`).join("");
   new Chart(document.getElementById("pc"),{type:"doughnut",data:{labels:pl,datasets:[{data:pd,backgroundColor:pc2,borderWidth:2,borderColor:"#090909"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
-  const ac=["#6366f1","#0ea5e9","#8b5cf6","#ec4899","#14b8a6"];
-  const al=["Equity","Fixed Inc.","FX","Priv. Eq.","Infra"];
+  // Asset type bar
+  const ac=["#6366f1","#0ea5e9","#8b5cf6","#ec4899","#14b8a6","#f59e0b"];
+  const al=["Equity","Fixed Inc.","FX","Priv. Eq.","Infra","Alts"];
   document.getElementById("l2").innerHTML=al.map((l,i)=>`<span style="display:flex;align-items:center;gap:3px"><span class="ld" style="background:${ac[i]}"></span>${l}</span>`).join("");
-  new Chart(document.getElementById("bc"),{type:"bar",data:{labels:al,datasets:[{data:[4,2,2,1,1],backgroundColor:ac,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:"#4a5568",autoSkip:false,maxRotation:30},grid:{display:false}},y:{ticks:{font:{size:9},color:"#4a5568",stepSize:1},grid:{color:"rgba(255,255,255,.04)"},beginAtZero:true}}}});
+  new Chart(document.getElementById("bc"),{type:"bar",data:{labels:al,datasets:[{data:[6,3,3,2,1,1],backgroundColor:ac,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:"#4a5568",autoSkip:false,maxRotation:30},grid:{display:false}},y:{ticks:{font:{size:9},color:"#4a5568",stepSize:1},grid:{color:"rgba(255,255,255,.04)"},beginAtZero:true}}}});
 },200);
+
+
+// ══════════════════════════════════════════════════════════════════
+// PORTFOLIO INTELLIGENCE
+// ══════════════════════════════════════════════════════════════════
+
+let piInited = false;
+let piChartsInited = false;
+let piAnalysisRunning = false;
+
+// ── View switching ────────────────────────────────────────────────────────────
+function showView(v){
+  document.getElementById("view-dash").style.display = v==="dash" ? "" : "none";
+  document.getElementById("view-pi").style.display   = v==="pi"   ? "" : "none";
+  document.getElementById("nb-dash").classList.toggle("active", v==="dash");
+  document.getElementById("nb-pi").classList.toggle("active",   v==="pi");
+  if(v==="pi" && !piInited){
+    piInited = true;
+    setTimeout(initPiView, 50);
+  }
+}
+
+function initPiView(){
+  renderPiTable();
+  if(!piChartsInited){
+    initPiCharts();
+    piChartsInited = true;
+  }
+  startPiAnalysis();
+}
+
+// ── PI Trade Table ────────────────────────────────────────────────────────────
+function renderPiTable(){
+  const stClass={Settled:"ss",Pending:"sp",Failed:"sf",Overdue:"so"};
+  const sorted=[...trades].sort((a,b)=>{
+    const av = a.pnl===null ? -Infinity : a.pnl;
+    const bv = b.pnl===null ? -Infinity : b.pnl;
+    return bv - av;
+  });
+  document.getElementById("pi-tbody").innerHTML = sorted.map(t=>{
+    const pnlCell = t.pnl===null
+      ? `<td class="pnl-zero">N/A</td><td class="pnl-zero">N/A</td>`
+      : t.pnl===0
+      ? `<td class="pnl-zero">$0</td><td class="pnl-zero">0.0%</td>`
+      : t.pnl>0
+      ? `<td class="pnl-pos">+$${t.pnl.toLocaleString()}</td><td class="pnl-pos">+${t.pnlPct}%</td>`
+      : `<td class="pnl-neg">-$${Math.abs(t.pnl).toLocaleString()}</td><td class="pnl-neg">${t.pnlPct}%</td>`;
+    return `<tr>
+      <td><span class="pi-tid">${t.id}</span></td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${t.asset}</td>
+      <td><span class="tag ${typeTag[t.type]||''}">${t.type}</span></td>
+      <td><span class="${t.action==='BUY'?'buy':'sell'}">${t.action}</span></td>
+      <td style="font-family:var(--font-mono);font-size:10px;font-weight:500">${t.amount}</td>
+      ${pnlCell}
+      <td><span class="st ${stClass[t.status]||'sp'}">${t.status}</span></td>
+      <td style="color:var(--t2)">${t.cp}</td>
+    </tr>`;
+  }).join("");
+}
+
+// ── PI Charts ─────────────────────────────────────────────────────────────────
+function initPiCharts(){
+  const chartDefaults = {
+    color:"#4a5568",
+    borderColor:"rgba(255,255,255,.06)"
+  };
+  Chart.defaults.color = chartDefaults.color;
+
+  // 1. Asset Allocation Donut
+  const allocColors=["#6366f1","#0ea5e9","#8b5cf6","#ec4899","#14b8a6","#f59e0b"];
+  const allocLabels=["Equity","Fixed Income","FX","Private Equity","Infrastructure","Alternatives"];
+  const allocByType={};
+  trades.forEach(t=>{allocByType[t.type]=(allocByType[t.type]||0)+t.notionalUSD;});
+  const allocData=[
+    allocByType["Equity"]||0,
+    allocByType["Fixed Income"]||0,
+    allocByType["FX"]||0,
+    allocByType["Private Equity"]||0,
+    allocByType["Infrastructure"]||0,
+    allocByType["Alternatives"]||0,
+  ];
+  document.getElementById("pi-leg-alloc").innerHTML=allocLabels.map((l,i)=>`<span><i style="background:${allocColors[i]}"></i>${l}</span>`).join("");
+  new Chart(document.getElementById("pi-donut"),{
+    type:"doughnut",
+    data:{labels:allocLabels,datasets:[{data:allocData,backgroundColor:allocColors,borderWidth:2,borderColor:"#131822",hoverBorderColor:"#1d2535"}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){const v=ctx.parsed;const total=allocData.reduce((a,b)=>a+b,0);return ` $${(v/1e6).toFixed(1)}M (${(v/total*100).toFixed(1)}%)`;}}}}
+    }
+  });
+
+  // 2. Trade Status Bar
+  const statusColors=["#22c55e","#f59e0b","#f97316","#ef4444"];
+  const statusLabels=["Settled","Pending","Overdue","Failed"];
+  const statusCounts=[
+    trades.filter(t=>t.status==="Settled").length,
+    trades.filter(t=>t.status==="Pending").length,
+    trades.filter(t=>t.status==="Overdue").length,
+    trades.filter(t=>t.status==="Failed").length,
+  ];
+  document.getElementById("pi-leg-status").innerHTML=statusLabels.map((l,i)=>`<span><i style="background:${statusColors[i]}"></i>${l} ${statusCounts[i]}</span>`).join("");
+  new Chart(document.getElementById("pi-status-chart"),{
+    type:"bar",
+    data:{labels:statusLabels,datasets:[{data:statusCounts,backgroundColor:statusColors,borderRadius:5,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
+      x:{ticks:{font:{size:10},color:"#6b7a94"},grid:{display:false},border:{display:false}},
+      y:{ticks:{font:{size:9},color:"#4a5568",stepSize:1},grid:{color:"rgba(255,255,255,.05)"},border:{display:false},beginAtZero:true}
+    }}
+  });
+
+  // 3. P&L by Asset Class (horizontal bar)
+  const pnlByClass={};
+  trades.forEach(t=>{if(t.pnl!==null){pnlByClass[t.type]=(pnlByClass[t.type]||0)+t.pnl;}});
+  const pnlLabels=["Equity","Alternatives","FX","Infrastructure","Private Equity","Fixed Income"];
+  const pnlValues=[
+    pnlByClass["Equity"]||0,
+    pnlByClass["Alternatives"]||0,
+    pnlByClass["FX"]||0,
+    pnlByClass["Infrastructure"]||0,
+    pnlByClass["Private Equity"]||0,
+    pnlByClass["Fixed Income"]||0,
+  ];
+  const pnlColors=pnlValues.map(v=>v>0?"rgba(34,197,94,.75)":v<0?"rgba(239,68,68,.75)":"rgba(74,85,104,.4)");
+  new Chart(document.getElementById("pi-pnl-chart"),{
+    type:"bar",
+    data:{labels:pnlLabels,datasets:[{data:pnlValues,backgroundColor:pnlColors,borderRadius:3,borderSkipped:false}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      indexAxis:"y",
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const v=ctx.parsed.x;return ` ${v>=0?"+":""}$${v.toLocaleString()}`;
+      }}}},
+      scales:{
+        x:{ticks:{font:{size:9},color:"#4a5568",callback:v=>`$${(v/1000).toFixed(0)}K`},grid:{color:"rgba(255,255,255,.05)"},border:{display:false}},
+        y:{ticks:{font:{size:9},color:"#6b7a94"},grid:{display:false},border:{display:false}}
+      }
+    }
+  });
+}
+
+// ── Claude API call ───────────────────────────────────────────────────────────
+async function callClaude(userPrompt, maxTokens=1200){
+  const apiKey = sessionStorage.getItem("ares_api_key");
+  if(!apiKey) throw new Error("NO_KEY");
+  const resp = await fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "x-api-key": apiKey,
+      "anthropic-version":"2023-06-01",
+      "anthropic-dangerous-direct-browser-access":"true"
+    },
+    body:JSON.stringify({
+      model:"claude-sonnet-4-20250514",
+      max_tokens:maxTokens,
+      system:"You are a senior portfolio analyst at Ares Wealth Management Solutions. Respond ONLY with valid JSON matching the requested schema — no markdown fences, no explanation, no text outside the JSON object.",
+      messages:[{role:"user",content:userPrompt}]
+    })
+  });
+  if(!resp.ok){
+    const err=await resp.json().catch(()=>({}));
+    throw new Error(err.error?.message||`HTTP ${resp.status}`);
+  }
+  const data=await resp.json();
+  return data.content?.[0]?.text||"";
+}
+
+// ── PI Analysis orchestration ─────────────────────────────────────────────────
+function startPiAnalysis(){
+  const key=sessionStorage.getItem("ares_api_key");
+  if(!key){
+    showNoKeyState();
+    return;
+  }
+  runPiAnalysis();
+}
+
+async function runPiAnalysis(){
+  if(piAnalysisRunning) return;
+  piAnalysisRunning=true;
+  const btn=document.getElementById("pi-regen");
+  if(btn){btn.disabled=true;}
+
+  showPiSkeleton();
+
+  const prompt=`Analyze the following portfolio and return ONLY a JSON object with this exact schema:
+{
+  "headline": "one punchy sentence summarizing portfolio health",
+  "overall_rating": "STRONG or CAUTIOUS or AT-RISK",
+  "overall_rating_reason": "one sentence explaining the rating",
+  "wins": [{"title": "...", "detail": "..."}, {"title": "...", "detail": "..."}, {"title": "...", "detail": "..."}],
+  "risks": [{"title": "...", "detail": "...", "severity": "HIGH or MEDIUM or LOW"}, {"title": "...", "detail": "...", "severity": "HIGH or MEDIUM or LOW"}, {"title": "...", "detail": "...", "severity": "HIGH or MEDIUM or LOW"}],
+  "actions": [{"priority": 1, "action": "...", "reason": "..."}, {"priority": 2, "action": "...", "reason": "..."}, {"priority": 3, "action": "...", "reason": "..."}],
+  "market_context": "2-3 sentence paragraph on macro backdrop",
+  "portfolio_outlook": "2-3 sentence forward-looking paragraph"
+}
+
+TRADE BOOK (16 trades, as of 2026-05-19):
+TRD-001: AAPL BUY $248,500 Goldman Sachs | SETTLED | P&L: +$7,952 (+3.2%)
+TRD-002: US Treasury 4.5% 2030 BUY $1,200,000 JPMorgan | SETTLED | P&L: -$8,400 (-0.7%)
+TRD-003: MSFT SELL $520,000 Morgan Stanley | PENDING (settles 2026-05-19) | P&L: -$10,920 (-2.1%)
+TRD-004: EUR/USD FX Forward BUY €850,000 Deutsche Bank | FAILED | P&L: N/A
+TRD-005: Blackstone Real Estate BUY $3,000,000 BNY Mellon | OVERDUE past T+2 | P&L: $0
+TRD-006: AMZN BUY $185,200 Citi | PENDING (settles 2026-05-20) | P&L: +$3,334 (+1.8%)
+TRD-007: GBP Corp Bond 5.2% SELL £400,000 Barclays | SETTLED | P&L: -$5,200 (-1.3%)
+TRD-008: Infrastructure Debt III BUY $5,500,000 State Street | PENDING (settles 2026-05-17) | P&L: $0
+TRD-009: JPY/USD Spot FX SELL ¥120,000,000 MUFG | PENDING (settles 2026-05-18) | P&L: +$4,400 (+0.4%)
+TRD-010: TSLA SELL $92,400 UBS | OVERDUE past T+2 | P&L: +$6,468 (sold before -7% drop)
+TRD-011: NVDA BUY $875,000 Goldman Sachs | SETTLED | P&L: +$105,000 (+12.0%)
+TRD-012: GLD (Gold ETF) BUY $620,000 JPMorgan | SETTLED | P&L: +$14,260 (+2.3%)
+TRD-013: SPY BUY $2,100,000 State Street | SETTLED | P&L: +$31,500 (+1.5%)
+TRD-014: EUR/GBP FX Spot SELL €500,000 Barclays | SETTLED | P&L: +$2,800 (+0.6%)
+TRD-015: India Gov Bond 7.1% 2033 BUY $450,000 HDFC Bank | PENDING (settles 2026-05-21) | P&L: $0
+TRD-016: Private Credit Fund IV BUY $4,200,000 Apollo | PENDING (settles 2026-05-22) | P&L: $0
+
+PORTFOLIO SUMMARY:
+Total AUM: $21.7M | Net Unrealized P&L: +$151,194 (+0.70%) | Settlement Rate: 43.8% (7/16 settled)
+At-Risk Exposure: ~$4.0M (OVERDUE: TRD-005 $3M, TRD-010 $92K | FAILED: TRD-004 €850K)
+Pending Notional: ~$10.4M across 6 trades
+
+MARKET CONTEXT (2026-05-19):
+- Apple Q2 beat: services +14% YoY, AAPL +3.2%
+- Fed holds rates at 4.25–4.50%; one cut signaled Q3 2026
+- EUR/USD at 1.073; ECB hints two more cuts, EUR weakening
+- Tesla Q1 deliveries miss; TSLA -7% WoW
+- Blackstone closes record $30B infrastructure fund
+- Deutsche Bank system maintenance May 16 caused TRD-004 FX failure
+- NVDA momentum strong; AI infrastructure demand accelerating
+
+Return ONLY the JSON object.`;
+
+  try{
+    const raw=await callClaude(prompt,1200);
+    let json;
+    try{
+      // strip any accidental markdown fences
+      const cleaned=raw.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"").trim();
+      json=JSON.parse(cleaned);
+    }catch(parseErr){
+      throw new Error("Invalid JSON from AI: "+parseErr.message);
+    }
+    renderAiCards(json);
+  }catch(e){
+    if(e.message==="NO_KEY"){
+      showNoKeyState();
+    } else {
+      document.getElementById("pi-ai-body").innerHTML=`
+        <div style="padding:24px;text-align:center">
+          <div style="font-size:11px;color:#f87171;margin-bottom:12px">Analysis failed: ${escHtml(e.message)}</div>
+          <button onclick="runPiAnalysis()" class="pi-regen-btn" style="margin:auto">Retry</button>
+        </div>`;
+    }
+  }finally{
+    piAnalysisRunning=false;
+    if(btn){btn.disabled=false;}
+  }
+}
+
+// ── Skeleton loader ───────────────────────────────────────────────────────────
+function showPiSkeleton(){
+  document.getElementById("pi-ai-body").innerHTML=`
+    <div>
+      <div style="margin-bottom:18px">
+        <div class="pi-skel" style="height:22px;width:75%;margin-bottom:10px"></div>
+        <div class="pi-skel" style="height:14px;width:30%;margin-bottom:6px"></div>
+        <div class="pi-skel" style="height:12px;width:55%"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+        ${[1,2,3].map(()=>`
+          <div style="border-radius:10px;padding:14px;border:1px solid #1d2535;background:rgba(255,255,255,.02)">
+            <div class="pi-skel" style="height:11px;width:50%;margin-bottom:14px"></div>
+            ${[1,2,3].map(()=>`
+              <div class="pi-skel" style="height:12px;width:85%;margin-bottom:6px"></div>
+              <div class="pi-skel" style="height:10px;width:95%;margin-bottom:14px"></div>
+            `).join("")}
+          </div>`).join("")}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        ${[1,2].map(()=>`
+          <div style="border-radius:10px;padding:14px;border:1px solid #1d2535;background:rgba(255,255,255,.02)">
+            <div class="pi-skel" style="height:10px;width:40%;margin-bottom:12px"></div>
+            <div class="pi-skel" style="height:11px;width:100%;margin-bottom:6px"></div>
+            <div class="pi-skel" style="height:11px;width:90%;margin-bottom:6px"></div>
+            <div class="pi-skel" style="height:11px;width:70%"></div>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+// ── Render AI JSON response ───────────────────────────────────────────────────
+function renderAiCards(d){
+  const ratingBadgeClass={
+    STRONG:"pi-badge-strong",
+    CAUTIOUS:"pi-badge-cautious",
+    "AT-RISK":"pi-badge-atrisk"
+  }[d.overall_rating]||"pi-badge-cautious";
+
+  const sevClass={HIGH:"pi-sev-high",MEDIUM:"pi-sev-medium",LOW:"pi-sev-low"};
+
+  const winsHtml=(d.wins||[]).map(w=>`
+    <div class="pi-item">
+      <div class="pi-item-title">${escHtml(w.title)}</div>
+      <div class="pi-item-detail">${escHtml(w.detail)}</div>
+    </div>`).join("");
+
+  const risksHtml=(d.risks||[]).map(r=>`
+    <div class="pi-item">
+      <div class="pi-item-row">
+        <div class="pi-item-title">${escHtml(r.title)}</div>
+        <span class="pi-sev ${sevClass[r.severity]||'pi-sev-medium'}">${escHtml(r.severity)}</span>
+      </div>
+      <div class="pi-item-detail">${escHtml(r.detail)}</div>
+    </div>`).join("");
+
+  const actionsHtml=(d.actions||[]).map(a=>`
+    <div class="pi-item">
+      <div class="pi-action-row">
+        <div class="pi-action-num">${a.priority}</div>
+        <div>
+          <div class="pi-item-title">${escHtml(a.action)}</div>
+          <div class="pi-item-detail">${escHtml(a.reason)}</div>
+        </div>
+      </div>
+    </div>`).join("");
+
+  document.getElementById("pi-ai-body").innerHTML=`
+    <div class="pi-ai-top pi-fade">
+      <div class="pi-headline">${escHtml(d.headline)}</div>
+      <div class="pi-rating-row">
+        <span class="pi-badge ${ratingBadgeClass}">${escHtml(d.overall_rating)}</span>
+      </div>
+      <div class="pi-rating-reason">${escHtml(d.overall_rating_reason)}</div>
+    </div>
+    <div class="pi-cols pi-fade pi-fade-1">
+      <div class="pi-col pi-col-wins">
+        <div class="pi-col-hdr"><span class="pi-col-dot"></span>Portfolio Wins</div>
+        ${winsHtml}
+      </div>
+      <div class="pi-col pi-col-risks">
+        <div class="pi-col-hdr"><span class="pi-col-dot"></span>Risk Flags</div>
+        ${risksHtml}
+      </div>
+      <div class="pi-col pi-col-actions">
+        <div class="pi-col-hdr"><span class="pi-col-dot"></span>Priority Actions</div>
+        ${actionsHtml}
+      </div>
+    </div>
+    <div class="pi-ctx-row pi-fade pi-fade-2">
+      <div class="pi-ctx-card">
+        <div class="pi-ctx-ttl">Market Context</div>
+        <div class="pi-ctx-txt">${escHtml(d.market_context)}</div>
+      </div>
+      <div class="pi-ctx-card">
+        <div class="pi-ctx-ttl">Portfolio Outlook</div>
+        <div class="pi-ctx-txt">${escHtml(d.portfolio_outlook)}</div>
+      </div>
+    </div>`;
+}
+
+// ── No-key state ──────────────────────────────────────────────────────────────
+function showNoKeyState(){
+  document.getElementById("pi-ai-body").innerHTML=`
+    <div class="pi-nokey">
+      <div class="pi-nokey-icon">🔑</div>
+      <div class="pi-nokey-ttl">API Key Required</div>
+      <div class="pi-nokey-sub">Portfolio Intelligence uses Claude AI to analyse your trade book.<br>Enter your Anthropic API key to get started.</div>
+      <button class="pi-nokey-btn" onclick="showApiModal()">Connect Anthropic API</button>
+    </div>`;
+}
+
+// ── API Key Modal ─────────────────────────────────────────────────────────────
+function showApiModal(){
+  const m=document.getElementById("api-modal");
+  m.classList.add("show");
+  setTimeout(()=>document.getElementById("api-key-inp").focus(),100);
+}
+function cancelApiModal(){
+  document.getElementById("api-modal").classList.remove("show");
+}
+function saveApiKey(){
+  const val=document.getElementById("api-key-inp").value.trim();
+  const err=document.getElementById("api-key-err");
+  if(!val||!val.startsWith("sk-")){
+    err.style.display="block";
+    err.textContent="Key must start with sk-. Please check and try again.";
+    return;
+  }
+  err.style.display="none";
+  sessionStorage.setItem("ares_api_key",val);
+  document.getElementById("api-modal").classList.remove("show");
+  document.getElementById("api-key-inp").value="";
+  runPiAnalysis();
+}
+
+function escHtml(s){
+  if(!s)return"";
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
 </script>
