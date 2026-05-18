@@ -239,26 +239,6 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .pi-ctx-ttl{font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
 .pi-ctx-txt{font-size:11px;color:var(--t2);line-height:1.75}
 
-/* API key modal */
-#api-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center}
-#api-modal.show{display:flex}
-.api-modal-box{background:#131822;border:1px solid #232c3d;border-radius:var(--br-lg);padding:28px;width:420px;max-width:92vw}
-.api-modal-ttl{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:6px}
-.api-modal-desc{font-size:11px;color:var(--t2);margin-bottom:18px;line-height:1.65}
-.api-modal-inp{width:100%;background:#0a0a0c;border:1px solid #232c3d;color:var(--t1);border-radius:var(--br-md);padding:10px 12px;font-size:12px;font-family:var(--font-mono);outline:none;margin-bottom:12px;transition:border-color .15s}
-.api-modal-inp:focus{border-color:var(--blue2)}
-.api-modal-btns{display:flex;gap:8px}
-.api-modal-cancel{flex:1;padding:9px;background:none;border:1px solid #232c3d;color:var(--t2);border-radius:var(--br-md);cursor:pointer;font-size:11px;font-family:var(--font-sans);transition:all .15s}
-.api-modal-cancel:hover{border-color:var(--bdr2);color:var(--t1)}
-.api-modal-connect{flex:2;padding:9px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:var(--br-md);cursor:pointer;font-size:11px;font-weight:500;font-family:var(--font-sans)}
-.api-modal-err{display:none;margin-top:8px;font-size:10px;color:#f87171}
-
-/* no-key state */
-.pi-nokey{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center}
-.pi-nokey-icon{font-size:32px;margin-bottom:12px;color:var(--t3)}
-.pi-nokey-ttl{font-size:14px;font-weight:500;color:var(--t1);margin-bottom:6px}
-.pi-nokey-sub{font-size:11px;color:var(--t2);margin-bottom:18px;line-height:1.6}
-.pi-nokey-btn{padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:var(--br-md);cursor:pointer;font-size:11px;font-weight:500;font-family:var(--font-sans)}
 </style>
 
 <div class="wrap">
@@ -486,7 +466,7 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
         <div class="pi-ai-hdr">
           <div class="pi-ai-hdr-l">
             <div class="pi-ai-hdr-ttl">AI Portfolio Intelligence</div>
-            <div class="pi-powered">claude-sonnet-4-20250514</div>
+            <div class="pi-powered">gpt-4o</div>
           </div>
           <button class="pi-regen-btn" id="pi-regen" onclick="runPiAnalysis()">
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5"/><path d="M9 1l3 2-2 3"/></svg>
@@ -503,19 +483,6 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 
 </div><!-- /wrap -->
 
-<!-- API Key Modal -->
-<div id="api-modal">
-  <div class="api-modal-box">
-    <div class="api-modal-ttl">Anthropic API Key Required</div>
-    <div class="api-modal-desc">Portfolio Intelligence uses Claude AI directly from your browser. Your key is stored only in sessionStorage and is never sent to Ares servers.</div>
-    <input class="api-modal-inp" id="api-key-inp" type="password" placeholder="sk-ant-api03-…" onkeydown="if(event.key==='Enter')saveApiKey()">
-    <div class="api-modal-btns">
-      <button class="api-modal-cancel" onclick="cancelApiModal()">Cancel</button>
-      <button class="api-modal-connect" onclick="saveApiKey()">Connect to Claude</button>
-    </div>
-    <div class="api-modal-err" id="api-key-err"></div>
-  </div>
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
@@ -793,40 +760,10 @@ function initPiCharts(){
   });
 }
 
-// ── Claude API call ───────────────────────────────────────────────────────────
-async function callClaude(userPrompt, maxTokens=1200){
-  const apiKey = sessionStorage.getItem("ares_api_key");
-  if(!apiKey) throw new Error("NO_KEY");
-  const resp = await fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "x-api-key": apiKey,
-      "anthropic-version":"2023-06-01",
-      "anthropic-dangerous-direct-browser-access":"true"
-    },
-    body:JSON.stringify({
-      model:"claude-sonnet-4-20250514",
-      max_tokens:maxTokens,
-      system:"You are a senior portfolio analyst at Ares Wealth Management Solutions. Respond ONLY with valid JSON matching the requested schema — no markdown fences, no explanation, no text outside the JSON object.",
-      messages:[{role:"user",content:userPrompt}]
-    })
-  });
-  if(!resp.ok){
-    const err=await resp.json().catch(()=>({}));
-    throw new Error(err.error?.message||`HTTP ${resp.status}`);
-  }
-  const data=await resp.json();
-  return data.content?.[0]?.text||"";
-}
+const PI_SYS = "You are a senior portfolio analyst at Ares Wealth Management Solutions. Respond ONLY with valid JSON matching the requested schema — no markdown fences, no explanation, no text outside the JSON object.";
 
 // ── PI Analysis orchestration ─────────────────────────────────────────────────
 function startPiAnalysis(){
-  const key=sessionStorage.getItem("ares_api_key");
-  if(!key){
-    showNoKeyState();
-    return;
-  }
   runPiAnalysis();
 }
 
@@ -885,7 +822,7 @@ MARKET CONTEXT (2026-05-19):
 Return ONLY the JSON object.`;
 
   try{
-    const raw=await callClaude(prompt,1200);
+    const raw=await callGPT(PI_SYS,prompt,1200);
     let json;
     try{
       // strip any accidental markdown fences
@@ -896,15 +833,11 @@ Return ONLY the JSON object.`;
     }
     renderAiCards(json);
   }catch(e){
-    if(e.message==="NO_KEY"){
-      showNoKeyState();
-    } else {
-      document.getElementById("pi-ai-body").innerHTML=`
-        <div style="padding:24px;text-align:center">
-          <div style="font-size:11px;color:#f87171;margin-bottom:12px">Analysis failed: ${escHtml(e.message)}</div>
-          <button onclick="runPiAnalysis()" class="pi-regen-btn" style="margin:auto">Retry</button>
-        </div>`;
-    }
+    document.getElementById("pi-ai-body").innerHTML=`
+      <div style="padding:24px;text-align:center">
+        <div style="font-size:11px;color:#f87171;margin-bottom:12px">Analysis failed: ${escHtml(e.message)}</div>
+        <button onclick="runPiAnalysis()" class="pi-regen-btn" style="margin:auto">Retry</button>
+      </div>`;
   }finally{
     piAnalysisRunning=false;
     if(btn){btn.disabled=false;}
@@ -1012,40 +945,6 @@ function renderAiCards(d){
     </div>`;
 }
 
-// ── No-key state ──────────────────────────────────────────────────────────────
-function showNoKeyState(){
-  document.getElementById("pi-ai-body").innerHTML=`
-    <div class="pi-nokey">
-      <div class="pi-nokey-icon">🔑</div>
-      <div class="pi-nokey-ttl">API Key Required</div>
-      <div class="pi-nokey-sub">Portfolio Intelligence uses Claude AI to analyse your trade book.<br>Enter your Anthropic API key to get started.</div>
-      <button class="pi-nokey-btn" onclick="showApiModal()">Connect Anthropic API</button>
-    </div>`;
-}
-
-// ── API Key Modal ─────────────────────────────────────────────────────────────
-function showApiModal(){
-  const m=document.getElementById("api-modal");
-  m.classList.add("show");
-  setTimeout(()=>document.getElementById("api-key-inp").focus(),100);
-}
-function cancelApiModal(){
-  document.getElementById("api-modal").classList.remove("show");
-}
-function saveApiKey(){
-  const val=document.getElementById("api-key-inp").value.trim();
-  const err=document.getElementById("api-key-err");
-  if(!val||!val.startsWith("sk-")){
-    err.style.display="block";
-    err.textContent="Key must start with sk-. Please check and try again.";
-    return;
-  }
-  err.style.display="none";
-  sessionStorage.setItem("ares_api_key",val);
-  document.getElementById("api-modal").classList.remove("show");
-  document.getElementById("api-key-inp").value="";
-  runPiAnalysis();
-}
 
 function escHtml(s){
   if(!s)return"";
