@@ -1,4 +1,7 @@
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -238,6 +241,100 @@ tbody tr.sel td{background:rgba(37,99,235,.08)}
 .pi-ctx-card{background:#0d1320;border:1px solid #232c3d;border-radius:10px;padding:14px}
 .pi-ctx-ttl{font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--t3);text-transform:uppercase;margin-bottom:8px}
 .pi-ctx-txt{font-size:11px;color:var(--t2);line-height:1.75}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* iPad Pro and below (≤1024px) */
+@media(max-width:1024px){
+  .pi-charts{grid-template-columns:repeat(2,1fr)}
+  .pi-chart-card:nth-child(3){grid-column:span 2}
+}
+
+/* Tablet portrait + large phones (≤768px) */
+@media(max-width:768px){
+  .wrap{border-radius:0}
+  .hdr{padding:8px 14px}
+  .logo-plate{height:30px;padding:3px 8px}
+  .logo-plate svg{height:22px}
+  .nav-btn{padding:8px 10px;font-size:10px;gap:4px}
+  .body{padding:10px}
+  .kpi-row{grid-template-columns:repeat(3,1fr);gap:6px}
+  .kpi-v{font-size:19px}
+  .main{grid-template-columns:1fr}
+  .rp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .charts{grid-template-columns:1fr}
+  .dg{grid-template-columns:repeat(2,1fr)}
+  .ngrid{grid-template-columns:repeat(2,1fr)}
+  .news-hdr{flex-wrap:wrap;gap:8px}
+  .naibtn{font-size:9px;padding:5px 10px}
+  .pi-body{padding:12px}
+  .pi-hero{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pi-stat-val{font-size:18px}
+  .pi-charts{grid-template-columns:1fr;gap:10px}
+  .pi-chart-card:nth-child(3){grid-column:auto}
+  .pi-cols{grid-template-columns:1fr;gap:8px}
+  .pi-ctx-row{grid-template-columns:1fr}
+  .pi-tbl-hdr{flex-direction:column;gap:4px;align-items:flex-start}
+  .pi-ai-hdr{flex-wrap:wrap;gap:8px}
+}
+
+/* Phones (≤480px) */
+@media(max-width:480px){
+  .hdr{padding:6px 10px}
+  .logo-plate{height:26px;padding:2px 6px}
+  .logo-plate svg{height:18px}
+  .clk{font-size:10px}
+  .nav-btn{padding:7px 8px;font-size:9px;letter-spacing:.02em}
+  .nav-btn svg{width:11px;height:11px}
+  .body{padding:8px}
+  .kpi{padding:8px}
+  .kpi-v{font-size:17px}
+  .kpi-l{font-size:8px}
+  .rp{grid-template-columns:1fr}
+  .ngrid{grid-template-columns:1fr}
+  .ctrl input{width:100%}
+  .pi-body{padding:10px}
+  .pi-hero{grid-template-columns:repeat(2,1fr);gap:6px}
+  .pi-stat{padding:11px 12px}
+  .pi-stat-val{font-size:17px}
+  .pi-stat-sub{font-size:9px}
+  .pi-ai-hdr{flex-direction:column;align-items:flex-start}
+  .pi-regen-btn{width:100%;justify-content:center}
+  .pi-headline{font-size:15px}
+  .pi-col{padding:12px}
+}
+
+/* Small phones — iPhone mini / SE (≤375px) */
+@media(max-width:375px){
+  .hdr{padding:6px 8px}
+  .logo-plate{height:24px;padding:2px 5px}
+  .logo-plate svg{height:16px}
+  .live-lbl{font-size:7px;letter-spacing:.08em}
+  .dot{width:5px;height:5px}
+  .clk{font-size:9px}
+  .nav-btn{font-size:8px;padding:6px 8px}
+  .body{padding:7px}
+  .kpi-row{gap:5px}
+  .kpi{padding:7px 5px}
+  .kpi-v{font-size:15px}
+  .kpi-l{font-size:7px}
+  .fb{font-size:9px;padding:3px 6px}
+  .pi-hero{grid-template-columns:repeat(2,1fr)}
+  .pi-stat-val{font-size:15px}
+  .pi-stat-lbl{font-size:7px}
+  .pi-stat-sub{font-size:8px}
+  .pi-tbl th{font-size:8px;padding:6px 7px}
+  .pi-tbl td{font-size:10px;padding:6px 7px}
+  .pi-headline{font-size:14px}
+  .pi-item-title{font-size:10px}
+  .pi-item-detail{font-size:9px}
+  .pi-ctx-txt{font-size:10px}
+  .tag,.st{font-size:8px;padding:2px 5px}
+  th{font-size:9px;padding:6px 6px}
+  td{font-size:10px;padding:6px 6px}
+}
 
 </style>
 
